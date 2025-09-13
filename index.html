@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регайся бля</title>
+    <link rel="icon" href="sosala.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 20px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 440px;
+            background: rgba(26, 26, 46, 0.9);
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            padding: 40px 30px;
+            border: 1px solid rgba(105, 55, 165, 0.3);
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(121, 63, 204, 0.1), rgba(121, 63, 204, 0.2));
+            transform: rotate(0deg);
+            z-index: -1;
+            animation: animate 8s linear infinite;
+        }
+        
+        @keyframes animate {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .form-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .form-header h2 {
+            color: #fff;
+            font-size: 32px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #9d50bb, #6e48aa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .form-header p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 16px;
+        }
+        
+        .input-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .input-group label {
+            display: block;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 8px;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 15px 15px 15px 45px;
+            border: none;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.07);
+            color: #fff;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+        
+        .input-group input:focus {
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 15px rgba(121, 63, 204, 0.4);
+        }
+        
+        .input-group i {
+            position: absolute;
+            left: 15px;
+            bottom: 15px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 18px;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(45deg, #9d50bb, #6e48aa);
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(121, 63, 204, 0.4);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(121, 63, 204, 0.6);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .form-footer {
+            text-align: center;
+            margin-top: 25px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .form-footer a {
+            color: #9d50bb;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .form-footer a:hover {
+            color: #6e48aa;
+            text-decoration: underline;
+        }
+        
+        .form-toggle {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+        }
+        
+        .toggle-btn {
+            background: transparent;
+            border: none;
+            color: #9d50bb;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .toggle-btn:hover {
+            color: #6e48aa;
+            text-decoration: underline;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .social-login {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.07);
+            color: white;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .social-btn:hover {
+            transform: translateY(-3px);
+            background: linear-gradient(45deg, #9d50bb, #6e48aa);
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            .form-header h2 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="register-form">
+            <div class="form-header">
+                <h2>Создать акк сукаа</h2>
+                <p>Инфу для рега напиши</p>
+            </div>
+            
+            <form>
+                <div class="input-group">
+                    <label for="name">Имя напиши свое</label>
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="password">Пароль наху</label>
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="email">Email адрес сучка</label>
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <button type="submit" class="btn">Зарегаться</button>
+            </form>
+            
+            <div class="social-login">
+                <div class="social-btn">
+                    <i class="fab fa-google"></i>
+                </div>
+                <div class="social-btn">
+                    <i class="fab fa-facebook-f"></i>
+                </div>
+                <div class="social-btn">
+                    <i class="fab fa-twitter"></i>
+                </div>
+            </div>
+            
+            <div class="form-footer">
+                Уже зареган? <a href="#" id="show-login">Войти епта</a>
+            </div>
+        </div>
+
+        <!-- Форма входа -->
+        <div id="login-form" class="hidden">
+            <div class="form-header">
+                <h2>Вход в акк</h2>
+                <p>Учет данные введи свои</p>
+            </div>
+            
+            <form>
+                <div class="input-group">
+                    <label for="login-username">Ник свой нах</label>
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="login-username" name="username" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="login-password">Пароль нахуу</label>
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="login-password" name="password" required>
+                </div>
+                
+                <div class="form-footer">
+                    <a href="#">Забыл пароль? сосал?</a>
+                </div>
+                
+                <button type="submit" class="btn">Войти в меня</button>
+            </form>
+            
+            <div class="social-login">
+                <div class="social-btn">
+                    <i class="fab fa-google"></i>
+                </div>
+                <div class="social-btn">
+                    <i class="fab fa-facebook-f"></i>
+                </div>
+                <div class="social-btn">
+                    <i class="fab fa-twitter"></i>
+                </div>
+            </div>
+            
+            <div class="form-footer">
+                Нет аккаунта? <a href="#" id="show-register">Зарегаться</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('show-login').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('register-form').classList.add('hidden');
+            document.getElementById('login-form').classList.remove('hidden');
+        });
+
+        document.getElementById('show-register').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('login-form').classList.add('hidden');
+            document.getElementById('register-form').classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
